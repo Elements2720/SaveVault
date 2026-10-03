@@ -1,0 +1,54 @@
+name: Build and verify
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  core-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - name: Test backup and restore engine
+        run: dotnet test tests/SaveVault.Core.Tests/SaveVault.Core.Tests.csproj --configuration Release
+
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - name: Build Windows application and tests
+        run: dotnet build SaveVault.sln --configuration Release
+      - name: Test engine on Windows
+        run: dotnet test tests/SaveVault.Core.Tests/SaveVault.Core.Tests.csproj --configuration Release --no-build
+      - name: Publish portable application
+        run: dotnet publish src/SaveVault.App/SaveVault.App.csproj --configuration Release --runtime win-x64 --self-contained true --output artifacts/windows-x64
+      - name: Check desktop startup
+        shell: pwsh
+        run: |
+          $app = Start-Process -FilePath "$PWD/artifacts/windows-x64/SaveVault.exe" -PassThru
+          try {
+            $started = $false
+            for ($i = 0; $i -lt 30; $i++) {
+              Start-Sleep -Milliseconds 500
+              $app.Refresh()
+              if ($app.HasExited) { throw "SaveVault exited during startup (exit code $($app.ExitCode))." }
+              if ($app.MainWindowHandle -ne 0) { $started = $true; break }
+            }
+            if (-not $started) { throw "SaveVault did not create a desktop window." }
+          } finally {
+            if (-not $app.HasExited) { Stop-Process -Id $app.Id -Force }
+          }
+      - uses: actions/upload-artifact@v4
+        with:
+          name: SaveVault-windows-x64
+          path: artifacts/windows-x64/

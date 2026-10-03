@@ -1,0 +1,55 @@
+<Application x:Class="SaveVault.App.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Application.Resources>
+        <SolidColorBrush x:Key="CanvasBrush" Color="#F4F6FA" />
+        <SolidColorBrush x:Key="InkBrush" Color="#17243B" />
+        <SolidColorBrush x:Key="MutedBrush" Color="#617087" />
+        <SolidColorBrush x:Key="AccentBrush" Color="#365DE5" />
+        <Style TargetType="Window">
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Foreground" Value="{StaticResource InkBrush}" />
+            <Setter Property="Background" Value="{StaticResource CanvasBrush}" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Padding" Value="14,8" />
+            <Setter Property="Margin" Value="0,0,8,0" />
+            <Setter Property="MinHeight" Value="36" />
+            <Setter Property="Background" Value="White" />
+            <Setter Property="Foreground" Value="{StaticResource InkBrush}" />
+            <Setter Property="BorderBrush" Value="#D8DFEB" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+        <Style x:Key="PrimaryButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Background" Value="{StaticResource AccentBrush}" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Padding" Value="10,8" />
+            <Setter Property="BorderBrush" Value="#D8DFEB" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Padding" Value="10,8" />
+            <Setter Property="MinHeight" Value="36" />
+        </Style>
+        <Style x:Key="Label" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Margin" Value="0,16,0,6" />
+        </Style>
+        <Style x:Key="Hint" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource MutedBrush}" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+        <Style x:Key="Card" TargetType="Border">
+            <Setter Property="Background" Value="White" />
+            <Setter Property="CornerRadius" Value="12" />
+            <Setter Property="Padding" Value="22" />
+            <Setter Property="BorderBrush" Value="#E2E7F0" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+    </Application.Resources>
+</Application>

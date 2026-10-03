@@ -1,0 +1,86 @@
+# Small offline starter; Update catalog loads the full Ludusavi manifest.
+# Source: https://github.com/mtkennerly/ludusavi-manifest (MIT; see THIRD-PARTY-NOTICES.txt).
+Cyberpunk 2077:
+  files:
+    "<home>/Saved Games/CD Projekt Red/Cyberpunk 2077":
+      tags: [save]
+      when: [{os: windows}]
+    "<winLocalAppData>/CD Projekt Red/Cyberpunk 2077":
+      tags: [config]
+      when: [{os: windows}]
+  installDir:
+    Cyberpunk 2077: {}
+  steam: {id: 1091500}
+Elden Ring:
+  files:
+    "<winAppData>/EldenRing/<storeUserId>":
+      tags: [save]
+      when: [{os: windows}]
+    "<winAppData>/EldenRing/GraphicsConfig.xml":
+      tags: [config]
+      when: [{os: windows}]
+  installDir:
+    ELDEN RING: {}
+  steam: {id: 1245620}
+Alan Wake 2:
+  alias: Alan Wake II
+Alan Wake II:
+  files:
+    "<winLocalAppData>/Remedy/AlanWake2/<storeUserId>":
+      tags: [save]
+      when: [{os: windows}]
+    "<winLocalAppData>/Remedy/AlanWake2/renderer.ini":
+      tags: [config]
+      when: [{os: windows}]
+Undertale:
+  files:
+    "<winLocalAppData>/UNDERTALE":
+      tags: [save, config]
+      when: [{os: windows}]
+    "<root>/userdata/<storeUserId>/391540/remote":
+      tags: [save]
+      when: [{store: steam}]
+  installDir:
+    Undertale: {}
+  steam: {id: 391540}
+"Dying Light: The Beast":
+  files:
+    "<root>/userdata/<storeUserId>/3008130/remote/out/profiles":
+      tags: [config]
+      when: [{store: steam}]
+    "<root>/userdata/<storeUserId>/3008130/remote/out/save":
+      tags: [save]
+      when: [{store: steam}]
+    "<winDocuments>/dying light the beast/out":
+      tags: [config]
+      when: [{os: windows}]
+  installDir:
+    Dying Light The Beast: {}
+  steam: {id: 3008130}
+Gothic 1 Remake:
+  files:
+    "<winLocalAppData>/G1R/Saved/Config/Windows/GameUserSettings.ini":
+      tags: [config]
+      when: [{os: windows}]
+    "<winLocalAppData>/G1R/Saved/SaveGames/*.sav":
+      tags: [save]
+      when: [{os: windows}]
+    "<winLocalAppData>/G1R/Saved/SaveGames/EnhancedInputUserSettings.sav":
+      tags: [config]
+      when: [{os: windows}]
+  installDir:
+    Gothic 1 Remake: {}
+  steam: {id: 1297900}
+Age of Empires II (2013):
+  alias: "Age of Empires II: HD Edition"
+"Age of Empires II: HD Edition":
+  files:
+    "<base>/savegame":
+      tags: [save]
+      when: [{os: windows}]
+    "<winAppData>/Age2HD":
+      tags: [config]
+      when: [{os: windows}]
+  installDir:
+    Age2HD: {}
+  steam: {id: 221380}
